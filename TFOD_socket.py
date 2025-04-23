@@ -31,7 +31,7 @@ def send_data(client_socket, host, port, frame, bbox_data):
         print(f"Error sending data: {e}")
 
 # Load the TFLite model
-MODEL_PATH = "/home/mastermin/tflite1/Sample_custom/tflite_test/detect.tflite"
+MODEL_PATH = "/home/mendel/tflite_test/detect.tflite"
 interpreter = tflite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
 
