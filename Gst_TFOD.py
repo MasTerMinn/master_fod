@@ -8,17 +8,19 @@ interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
-# GStreamer pipeline to send video
+# GStreamer pipeline for streaming video (UDP stream)
 gst_str = (
     "appsrc ! videoconvert ! x264enc tune=zerolatency bitrate=500 speed-preset=ultrafast ! "
-    "rtph264pay config-interval=1 pt=96 ! udpsink host=10.235.175.5 port=5000"
+    "rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.40.123 port=5000"
 )
-out = cv2.VideoWriter(gst_str, cv2.CAP_GSTREAMER, 0, 30, (640, 480), True)
 
-# Camera input
+# Use OpenCV to capture and process video
 cap = cv2.VideoCapture(1)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+# Create VideoWriter with GStreamer pipeline (ensure GStreamer is installed and configured properly)
+out = cv2.VideoWriter(gst_str, cv2.CAP_GSTREAMER, 0, 30, (640, 480))
 
 class_names = ['Bolt', 'Wire', 'SodaCan', 'Hammer', 'Wrench']
 
