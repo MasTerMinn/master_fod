@@ -5,7 +5,7 @@ import socket
 import json
 
 def create_socket():
-    host = "10.235.175.5"  # IP ของเครื่องที่ต้องการให้แสดงผล
+    host = "10.235.175.5" 
     port = 6000
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return client_socket, host, port
